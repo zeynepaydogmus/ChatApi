@@ -44,6 +44,8 @@ router.post("/auth", async (req, res) => {
           });
           res.json({
             status: true,
+            userId: user._id,
+            username,
             token,
           });
         }

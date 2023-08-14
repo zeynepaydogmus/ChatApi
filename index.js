@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-
+const cors = require("cors");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -18,7 +18,7 @@ const userRouter = require("./routes/user");
 //middleware
 const verifyToken = require("./middleware/verify-token");
 app.use(express.static("public"));
-
+app.use(cors({ origin: true, credentials: true }));
 app.set("api_secret_key", config.api_secret_key);
 
 app.get("/", (req, res) => {
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api", verifyToken);
 
-app.use("/api/user", userRouter);
+app.use("/user", userRouter);
 //tüm userları dizi içinde sakla
 let allUsers = [];
 //bağlantıyı dinliyoruz.
