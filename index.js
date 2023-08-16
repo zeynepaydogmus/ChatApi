@@ -8,7 +8,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3001",
+  },
+});
 const mongoDbConnection = require("./helpers/mongoDbConnection")();
 // const { messagesDbConnection } = require("./helpers/mongoDbConnection");
 const config = require("./config");
@@ -21,9 +25,9 @@ app.use(express.static("public"));
 app.use(cors({ origin: true, credentials: true }));
 app.set("api_secret_key", config.api_secret_key);
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(__dirname + "/index.html");
+// });
 app.use("/api", verifyToken);
 
 app.use("/user", userRouter);
