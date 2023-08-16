@@ -14,7 +14,7 @@ const io = new Server(server, {
   },
 });
 const mongoDbConnection = require("./helpers/mongoDbConnection")();
-// const { messagesDbConnection } = require("./helpers/mongoDbConnection");
+
 const config = require("./config");
 const TableMessage = require("./models/Message");
 const userRouter = require("./routes/user");
