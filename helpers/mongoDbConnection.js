@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 module.exports = () => {
   mongoose.connect(
-    "mongodb+srv://mydb:545454@cluster0.jfczb.mongodb.net/MessagesDb?retryWrites=true&w=majority"
+    "mongodb+srv://*******@cluster0.jfczb.mongodb.net/MessagesDb?retryWrites=true&w=majority"
   );
 
   mongoose.connection.on("open", () => {
